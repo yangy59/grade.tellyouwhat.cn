@@ -10,10 +10,11 @@ module.exports = {
 
     browser
       .url(devServer)
-      .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.hello')
-      .assert.containsText('h1', 'Welcome to Your Vue.js App')
-      .assert.elementCount('img', 1)
-      .end()
+      .assert.visible('input[id=student-number]')//判断学号输入框是否存在
+      .assert.visible('input[id=password]')//判断密码输入框是否存在
+      .setValue("input[id=student-number]","2015118004")//输入学号
+      .setValue('input[id=__BVID__29]', "agreementsChecked: true");//勾选同意软件使用条款
+      browser.expect.element('#__BVID__29').to.be.selected;//判断是否勾选到同意软件使用条款
+      browser.click('button[id=loginBtn]');//点击登录
   }
 }
